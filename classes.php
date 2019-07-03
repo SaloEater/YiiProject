@@ -32,27 +32,34 @@ class Human
         return $this->lastName;
     }
 
-    function setAge($age)
+    public function setAge($age)
     {
         $this->age = $age;
-        return $this;
     }
 
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-        return $this;
     }
 
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-        return $this;
+    }
+
+    public function getFullName()
+    {
+        return $this->firstName . ' ' . $this->lastName;
+    }
+
+    public function __toString()
+    {
+        return $this->getFullName();
     }
 
 }
 
-class Student
+class Student extends Human
 {
     const COURSE_FULL = 'fulltime',
         COURSE_EXTRA = 'extramural';
@@ -65,10 +72,11 @@ class Student
 
     private $marksList;
 
-    public function __constructor()
+    public function __constructor2($firstName, $lastName, $age, $courseNum, $courseType)
     {
-        $this->courseNum = 1;
-        $this->courseType = self::COURSE_FULL;
+        parent::__constructor($firstName, $lastName, $age);
+        $this->courseNum = $courseNum;
+        $this->courseType = $courseType;
         $this->marksList = [];
     }
 
@@ -98,14 +106,15 @@ class Student
     }
 }
 
-class Worrker
+class Worrker extends Human
 {
     private $salary,
         $payedSalary;
 
-    public function constructor()
+    public function __constructor2($firstName, $lastName, $age, $salary)
     {
-        $this->salary = 0;
+        parent::__constructor($firstName, $lastName, $age);
+        $this->salary = $salary;
         $this->payedSalary = [];
     }
 
@@ -129,7 +138,7 @@ class Worrker
 
     public function GetSalaryList()
     {
-        if ($this->payedSalary == []) return 'Hadn\'t receive salary yet';
+        if (!count($this->payedSalary)) return 'Hadn\'t receive salary yet';
         $output = '';
         foreach ($this->payedSalary as $key => $value)
         {
@@ -137,14 +146,20 @@ class Worrker
         }
         return $output;
     }
+
+    public function __toString()
+    {
+        return "Worker " . $this->getFullName();
+    }
 }
 
-class Manager
+class Manager extends Worrker
 {
     private $employees;
 
-    public function constructor()
+    public function __constructor2($firstName, $lastName, $age, $salary)
     {
+        parent::__constructor2($firstName, $lastName, $age, $salary);
         $this->employees = [];
     }
 

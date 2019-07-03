@@ -45,5 +45,5 @@ return [
             ],
         ],
     ],
-    'params' => $params,
+    'params' => $params
 ];
