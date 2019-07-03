@@ -26,7 +26,19 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
+    <table border="1px solid black" style="border-collapse: collapse;" width="100%">
+    <?php
+
+        foreach ($model->attributes() as $attribute=>$value) {
+            echo "<tr>" . "<td>" . $model->attributeLabels()[$value] . "</td>" . "<td>" . $model->$value . "</td>" . "</tr>";
+        }
+
+    ?>
+    </table>
+
+    <?php
+    /*
+    echo DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
@@ -34,6 +46,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'lastName',
             'age',
         ],
-    ]) ?>
+    ])
+    */?>
+
+    <?php //print_r($model) ?>
 
 </div>
