@@ -25,7 +25,7 @@ class Student extends Human
     {
         parent::__construct($firstName, $lastName, $age);
         $this->setCourseNum($courseNum);
-        $this->setCourseNum($courseType);
+        $this->setCourseType($courseType);
         $this->marksList = [];
     }
 
@@ -41,15 +41,23 @@ class Student extends Human
 
     public function getMarksList()
     {
-        return $this->marksList;
+        if (!count($this->marksList)) return 'Hadn\'t receive marks yet';
+        $output = '';
+        foreach ($this->marksList as $key=>$item)
+        {
+            foreach ($item as $mark) {
+                $output .= $key . ' marked as ' . $mark . PHP_EOL;
+            }
+        }
+        return $output;
     }
 
-    public function AddMark($item, $value)
+    public function addMark($item, $mark)
     {
-        $this->marksList[$item] = $value;
+        $this->marksList[$item][] = $mark;
     }
 
-    public function GetMarks()
+    public function getMarks()
     {
         return $this->marksList;
     }

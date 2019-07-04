@@ -20,28 +20,30 @@ class Jobber extends Human
         $this->payedSalary = [];
     }
 
-    public function SetSalary($salary)
+    public function setSalary($salary)
     {
         $this->salary = $salary;
     }
 
-    public function PayOther($date, $salary)
+    public function payOther($date, $salary)
     {
-        $this->payedSalary[] = [$date=>$salary];
+        $this->payedSalary[$date][] = $salary;
     }
 
-    public function Pay($date)
+    public function pay($date)
     {
-        $this->payedSalary[] = [$date=>$this->salary];
+        $this->payedSalary[$date][] = $this->salary;
     }
 
-    public function GetSalaryList()
+    public function getSalaryList()
     {
         if (!count($this->payedSalary)) return 'Hadn\'t receive salary yet';
         $output = '';
-        foreach ($this->payedSalary as $key => $value)
+        foreach ($this->payedSalary as $date=>$arr)
         {
-            $output .= ($key + 1) . ':' . $value[array_keys($value)[0]] . PHP_EOL;
+            foreach ($arr as $value) {
+                $output .= "Received " . $value . " on " . $date . PHP_EOL;
+            }
         }
         return $output;
     }

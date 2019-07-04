@@ -18,12 +18,12 @@ class Manager extends Jobber
         $this->employees = [];
     }
 
-    public function AddEmployer($employer)
+    public function addEmployer($employer)
     {
         $this->employees[] = $employer;
     }
 
-    public function RemoveEmployer($lastName)
+    public function removeEmployer($lastName)
     {
         $removed = false;
         foreach($this->employees as $employee)
@@ -38,7 +38,7 @@ class Manager extends Jobber
         return $removed;
     }
 
-    public function GetEmployerSurnames()
+    public function getEmployerSurnames()
     {
         if($this->employees == [])return "none";
 
@@ -52,7 +52,7 @@ class Manager extends Jobber
         return $output;
     }
 
-    public function GetEmployers()
+    public function getEmployers()
     {
         return $this->employees;
     }
