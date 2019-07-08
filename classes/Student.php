@@ -21,7 +21,7 @@ class Student extends Human
 
     private $marksList;
 
-    public function __construct(string $firstName, string $lastName, int $age, $courseNum, $courseType)
+    public function __construct($firstName, $lastName, $age, $courseNum, $courseType)
     {
         parent::__construct($firstName, $lastName, $age);
         $this->setCourseNum($courseNum);
@@ -29,27 +29,35 @@ class Student extends Human
         $this->marksList = [];
     }
 
-    public function setCourseNum(string $courseNum)
+    public function setCourseNum($courseNum)
     {
         $this->courseNum = $courseNum;
     }
 
-    public function setCourseType(int $courseType)
+    public function setCourseType($courseType)
     {
         $this->courseType = $courseType;
     }
 
-    public function getMarksList() : array
+    public function getMarksList()
     {
-        return $this->marksList;
+        if (!count($this->marksList)) return 'Hadn\'t receive marks yet';
+        $output = '';
+        foreach ($this->marksList as $key=>$item)
+        {
+            foreach ($item as $mark) {
+                $output .= $key . ' marked as ' . $mark . PHP_EOL;
+            }
+        }
+        return $output;
     }
 
-    public function AddMark(string $item, $value)
+    public function addMark($item, $mark)
     {
-        $this->marksList[$item] = $value;
+        $this->marksList[$item][] = $mark;
     }
 
-    public function GetMarks() : array
+    public function getMarks()
     {
         return $this->marksList;
     }

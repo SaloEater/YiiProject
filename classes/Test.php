@@ -20,6 +20,9 @@ $student = new Student("Aleksandr", "Petrov", 17, 0, Student::COURSE_EXTRA);
 echo $student . PHP_EOL;
 $student->setCourseNum(1);
 $student->setCourseType(Student::COURSE_FULL);
+$student->AddMark(Student::MARK_MATH, 5);
+$student->AddMark(Student::MARK_ECON, 5);
+echo $student->getMarksList();
 echo $student . PHP_EOL;
 
 $worker = new Jobber("Ivan", "Klichko", 32, 35000);
