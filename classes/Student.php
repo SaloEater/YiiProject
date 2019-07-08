@@ -21,7 +21,7 @@ class Student extends Human
 
     private $marksList;
 
-    public function __construct($firstName, $lastName, $age, $courseNum, $courseType)
+    public function __construct(string $firstName, string $lastName, int $age, string $courseNum, string $courseType)
     {
         parent::__construct($firstName, $lastName, $age);
         $this->setCourseNum($courseNum);
@@ -29,17 +29,17 @@ class Student extends Human
         $this->marksList = [];
     }
 
-    public function setCourseNum($courseNum)
+    public function setCourseNum(string $courseNum)
     {
         $this->courseNum = $courseNum;
     }
 
-    public function setCourseType($courseType)
+    public function setCourseType(string $courseType)
     {
         $this->courseType = $courseType;
     }
 
-    public function getMarksList()
+    public function getMarksList() : string
     {
         if (!count($this->marksList)) return 'Hadn\'t receive marks yet';
         $output = '';
@@ -52,12 +52,12 @@ class Student extends Human
         return $output;
     }
 
-    public function addMark($item, $mark)
+    public function addMark(string $item, string $mark)
     {
         $this->marksList[$item][] = $mark;
     }
 
-    public function getMarks()
+    public function getMarks() : array
     {
         return $this->marksList;
     }

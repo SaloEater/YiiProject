@@ -12,18 +12,18 @@ class Manager extends Jobber
 {
     private $employees;
 
-    public function __construct($firstName, $lastName, $age, $salary)
+    public function __construct(string $firstName, string $lastName, int $age, int $salary)
     {
         parent::__construct($firstName, $lastName, $age, $salary);
         $this->employees = [];
     }
 
-    public function addEmployer($employer)
+    public function addEmployer(Jobber $employer)
     {
         $this->employees[] = $employer;
     }
 
-    public function removeEmployer($lastName)
+    public function removeEmployer(string $lastName)
     {
         $removed = false;
         foreach($this->employees as $employee)
@@ -38,7 +38,7 @@ class Manager extends Jobber
         return $removed;
     }
 
-    public function getEmployerSurnames()
+    public function getEmployerSurnames() : string
     {
         if($this->employees == [])return "none";
 
@@ -52,7 +52,7 @@ class Manager extends Jobber
         return $output;
     }
 
-    public function getEmployers()
+    public function getEmployers() : array
     {
         return $this->employees;
     }
