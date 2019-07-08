@@ -12,42 +12,42 @@ class Human
         $firstName,
         $age;
 
-    public function __construct($firstName, $lastName, $age)
+    public function __construct(string $firstName, string $lastName, int $age)
     {
         $this->setLastName($lastName);
         $this->setFirstName($firstName);
         $this->setAge($age);
     }
-    public function getAge()
+    public function getAge() : int
     {
         return $this->age;
     }
-    public function getFirstName()
+    public function getFirstName() : string
     {
         return $this->firstName;
     }
 
-    public function getLastName()
+    public function getLastName() : string
     {
         return $this->lastName;
     }
 
-    public function setAge($age)
+    public function setAge(int $age)
     {
         $this->age = $age;
     }
 
-    public function setFirstName($firstName)
+    public function setFirstName(string $firstName)
     {
         $this->firstName = $firstName;
     }
 
-    public function setLastName($lastName)
+    public function setLastName(string $lastName)
     {
         $this->lastName = $lastName;
     }
 
-    public function getFullName()
+    public function getFullName() : string
     {
         return $this->firstName . ' ' . $this->lastName;
     }

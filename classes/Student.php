@@ -21,35 +21,35 @@ class Student extends Human
 
     private $marksList;
 
-    public function __construct($firstName, $lastName, $age, $courseNum, $courseType)
+    public function __construct(string $firstName, string $lastName, int $age, $courseNum, $courseType)
     {
         parent::__construct($firstName, $lastName, $age);
         $this->setCourseNum($courseNum);
-        $this->setCourseNum($courseType);
+        $this->setCourseType($courseType);
         $this->marksList = [];
     }
 
-    public function setCourseNum($courseNum)
+    public function setCourseNum(string $courseNum)
     {
         $this->courseNum = $courseNum;
     }
 
-    public function setCourseType($courseType)
+    public function setCourseType(int $courseType)
     {
         $this->courseType = $courseType;
     }
 
-    public function getMarksList()
+    public function getMarksList() : array
     {
         return $this->marksList;
     }
 
-    public function AddMark($item, $value)
+    public function AddMark(string $item, $value)
     {
         $this->marksList[$item] = $value;
     }
 
-    public function GetMarks()
+    public function GetMarks() : array
     {
         return $this->marksList;
     }

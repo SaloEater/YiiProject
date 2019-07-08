@@ -13,29 +13,29 @@ class Jobber extends Human
     private $salary,
         $payedSalary;
 
-    public function __construct($firstName, $lastName, $age, $salary)
+    public function __construct(string $firstName, string $lastName, int $age, int $salary)
     {
         parent::__construct($firstName, $lastName, $age);
         $this->setSalary($salary);
         $this->payedSalary = [];
     }
 
-    public function SetSalary($salary)
+    public function SetSalary(string $salary)
     {
         $this->salary = $salary;
     }
 
-    public function PayOther($date, $salary)
+    public function PayOther(string$date, int $salary)
     {
         $this->payedSalary[] = [$date=>$salary];
     }
 
-    public function Pay($date)
+    public function Pay(string $date)
     {
         $this->payedSalary[] = [$date=>$this->salary];
     }
 
-    public function GetSalaryList()
+    public function GetSalaryList() : string
     {
         if (!count($this->payedSalary)) return 'Hadn\'t receive salary yet';
         $output = '';
